@@ -38,7 +38,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/baobabus/go-apnsmock/apns2mock"
+	"github.com/aravind49/go-apnsmock/apns2mock"
 	"golang.org/x/net/http2"
 )
 
