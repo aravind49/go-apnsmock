@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/satori/go.uuid"
+	"github.com/google/uuid"
 )
 
 // APNSRequest represents parsed and validated request to APN service.
@@ -134,7 +134,8 @@ func (h *CaseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func writeApnsId(w http.ResponseWriter, r *http.Request) {
 	id := r.Header.Get("apns-id")
 	if id == "" {
-		id = uuid.NewV4().String()
+		uuid, _ := uuid.NewUUID()
+		id = uuid.String()
 	}
 	w.Header().Set("apns-id", id)
 }
