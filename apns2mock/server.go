@@ -10,7 +10,8 @@ import (
 	"net/http/httptest"
 	"sync/atomic"
 	"time"
-
+	"net"
+	"log"
 	"golang.org/x/net/http2"
 )
 
@@ -123,6 +124,13 @@ func NewServer(commsCfg CommsCfg, handler http.Handler, certFile string, keyFile
 		respErr(w, 404, "BadPath")
 	})
 	srv := httptest.NewUnstartedServer(mux)
+	l, err := net.Listen("tcp", "0.0.0.0:8443")
+	if err != nil {
+    	log.Fatal(err)
+	}
+	srv.Listener.Close()
+	srv.Listener = l
+	
 	srv.Listener = &cappedConnListener{
 		Listener: srv.Listener,
 		Cap:      commsCfg.MaxConns,
