@@ -101,7 +101,7 @@ func main() {
 	allOk := fs.Bool("allok", false, "if allok is true, server will respond with 200 status to all requests")
 	verbose := fs.Bool("verbose", false, "if true, verbose enables http2 verbose logging")
 	streams := fs.Uint("streams", 500, "`number` of concurrent HTTP/2 streams")
-	conns := fs.Uint("conns", 5, "maximum `number` of concurrent HTTP/2 connections")
+	conns := fs.Uint("conns", 40, "maximum `number` of concurrent HTTP/2 connections")
 	cdelay := fs.Duration("conn-delay", 100*time.Millisecond, "amount of `time` by which client connect attempts should be delayed")
 	rdelay := fs.Duration("resp-delay", 5*time.Millisecond, "amount of `time` by which responses should be delayed")
 	usage := func() {
